@@ -1,14 +1,104 @@
 ---
+// const { image, title, description, link } = Astro.props;
+const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS0RcSqNrtz0tgRAK0Qv3HxxVN3MhdJXvf14sXoJYceTef987fXhwmZWGiG49khJvxhbLMWgmQUNHbS/pub?output=csv");
+const text = await response.text();
+const rows = text.split("\n").map(r => r.split(","));
+
+// Suponiendo que la primera fila es encabezado
+const projects = rows.slice(1).map(([img, title, description, link, badge, category]) => ({
+  img, title, description, link, badge, category
+})).filter(card => card.img && card.title && card.description && card.link && card.badge && card.category);
 ---
-<div>
-    <h2>Card Project Component</h2>
+
+<!-- <div class="container">
+    <a href={link}>
+        <img src={image} alt="Imagen de proyecto" />
+        <div class="info">
+            <h2>{title}</h2>
+            <p>{description}</p>
+        </div>
+    </a>
+</div> -->
+
+<div class="cards">
+    {projects.map(project => (
+        <div class="card">
+            <a href={project.link}>
+                <img src={project.img} alt={project.title} />
+                <div class="info">
+                    <p class="category">{project.category}</p>
+                    <h2>{project.title}</h2>
+                    <p class="badge">{project.badge}</p>
+                    <p>{project.description}</p>
+                </div>
+            </a>
+        </div>
+    ))}
 </div>
 
 <style>
     div {
-        border: 1px solid #ccc;
-        padding: 16px;
+        width: 200px;
+        height: auto;
+        padding: 0;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    img {
+        width: 100%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .info {
+        padding: 1rem;
+        width: fit-content;
+    }
+
+    .info h2 {
+        line-height: 100%;
+    }
+
+    .info .category {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #888;
+        margin: 0;
+    }
+    
+    .info .badge {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #555;
+        margin: 0.25rem 0;
+    }
+    
+    .cards {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1); */
+        transition: all 0.3s ease;
+    }
+
+    
+    div.card:hover {
+        transform: translateY(-4px);
+        background-color: #ccc;
+    }
+    div.card:hover h2,
+    div.card:hover p {
+        color: #363636;
     }
 </style>
