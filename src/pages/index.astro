@@ -1,9 +1,13 @@
 ---
-import CardProject from '../components/CardProject.astro';
 import Layout from '../layouts/Layout.astro';
+import Presentation from '../components/Presentation.astro';
+import Projects from '../components/Projects.astro';
+import Footer from '../components/Footer.astro';
 
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 <Layout title="Astro Basics">   
-    <CardProject />
+    <Presentation />
+    <Projects />
 </Layout>
+<Footer/>
