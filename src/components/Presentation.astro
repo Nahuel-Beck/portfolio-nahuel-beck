@@ -5,7 +5,6 @@ import '../styles/global.css';
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href={global} />
         <title>Presentación</title>
     </head>
     <section class="presentation">
@@ -29,3 +28,22 @@ import '../styles/global.css';
         height: 80vh;
     }
 </style>
+
+<script>
+import { animate, splitText, stagger } from 'animejs';
+
+const { chars } = splitText('p', {
+    chars: { wrap: 'clip' },
+});
+
+animate(chars, {
+    y: [
+        { to: ['100%', '0%'] },
+        // { to: '-100%', delay: 1750, ease: 'in(3)' }
+    ],
+    duration: 250,
+    ease: 'out(5)',
+    delay: stagger(50),
+    // loop: true,
+});
+</script>

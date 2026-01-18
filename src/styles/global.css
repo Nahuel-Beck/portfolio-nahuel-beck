@@ -1,13 +1,15 @@
 /* src/styles/global.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 :root {
   --font-base: 'Inter', sans-serif;
-  --color-bg: #0f172a;
-  --color-text: #f1f5f9;
-  --color-accent: #38bdf8;
+  --color-bg: #313235;
+  --color-bg-nav: #919191;
+  --color-text: #e5e8eb;
+  --color-accent: #1c5670;
+  --color-button-hover: #144554;
 }
 
 html {
@@ -17,13 +19,36 @@ html {
   scroll-behavior: smooth;
 }
 
-/* body {
-  margin: 0rem 3rem;
-  padding: 1rem;
-  } */
-  
+body,
+main {
+  margin: 5.5rem 0rem 0rem;
+}
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-base);
     margin-top: 0;
     line-height: 1.6;
+}
+
+button {
+  font-family: var(--font-base);
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem
+}
+
+@media (hover:hover) {
+  button:hover {
+    background-color: var(--color-button-hover);
+  }
 }

@@ -1,6 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+
+import '../styles/global.css';
 ---
 <Layout title="Projects">
-    <h3>Hola este es el project page</h3>
-</Layout>   
+<Nav />
+<section class="projects-intro">
+        <h3>Acá van a ir los proyectos</h3>
+    </section>
+    <Footer />
+</Layout>
+
+<style>
+    .projects-intro {
+        height: 100vh;
+    }
+    h3 {
+        font-weight: 300;
+        text-align: center;
+        margin-top: 4rem;
+    }
+</style>

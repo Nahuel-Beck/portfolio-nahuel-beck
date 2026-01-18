@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+
+---
+<nav>
+    <button  onclick="location.href='/'" aria-label="Ir a la página principal">
+        <img src="/src/assets/img/logo.svg" alt="Logo" width="50" height="50" />
+    </button>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/projects">Proyectos</a></li>
+        <!-- <li><a href="/servicios">Servicios</a></li> -->
+        <!-- <li><a href="/about">Sobre mí</a></li> -->
+        <!-- <li><a href="/contacto">Contacto</a></li> -->
+    </ul>
+    <ul class="social">
+        <li>
+            <a  href="https://ar.linkedin.com/in/nahuel-beck" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/Nahuel-Beck/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.behance.net/nahuelbeck/moodboards" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-behance"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/@nahuelbeck2115" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        position: fixed;
+        left: 3rem;
+        right: 3rem;
+        top: 1rem;
+        z-index: 10;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem 3rem;
+        background-color: rgb(100, 100, 100, 0.5);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav.hidden {
+        transform: translateY(-150%);
+        opacity: 0;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.social {
+        gap: .65rem;
+    }
+
+    li a {
+        text-decoration: none;
+        color: var(--color-text);
+        font-weight: 500;
+    }
+
+    button {
+        background-color: transparent;
+        padding: 0;
+    }
+
+</style>
+
+<script>
+    import { animate } from 'animejs';
+
+    const links = document.querySelectorAll('nav ul li');
+    animate(links, {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 500,
+        delay: (el, i) => i * 100,
+        easing: 'easeOutQuad',
+    });
+
+    animate(document.querySelectorAll('nav button'), {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 500,
+        delay: 100,
+    });
+
+    // Esconder el nav al hacer scroll down y mostrarlo al hacer scroll up
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > lastScrollY) {
+            // Scrolling down
+            nav.classList.add('hidden');
+        } else {
+            // Scrolling up
+            nav.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
+    });
+
+</script>
