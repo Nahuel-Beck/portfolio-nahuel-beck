@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
-
+import logo from "/public/img/logo.svg";
 ---
+
 <nav>
     <button  onclick="location.href='/'" aria-label="Ir a la página principal">
-        <img src="/src/assets/img/logo.svg" alt="Logo" width="50" height="50" />
+        <img src={logo.src} alt="Logo" width="50" height="50" />
     </button>
     <ul>
         <li><a href="/">Inicio</a></li>
@@ -87,35 +88,38 @@ import '../styles/global.css';
 
 <script>
     import { animate } from 'animejs';
+    document.addEventListener('astro:page-load', () => {
 
-    const links = document.querySelectorAll('nav ul li');
-    animate(links, {
-        opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 500,
-        delay: (el, i) => i * 100,
-        easing: 'easeOutQuad',
-    });
+        const links = document.querySelectorAll('nav ul li');
+        animate(links, {
+            opacity: [0, 1],
+            translateY: [10, 0],
+            duration: 500,
+            delay: (el, i) => i * 100,
+            easing: 'easeOutQuad',
+        });
 
-    animate(document.querySelectorAll('nav button'), {
-        opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 500,
-        delay: 100,
-    });
+        animate(document.querySelectorAll('nav button'), {
+            opacity: [0, 1],
+            translateY: [10, 0],
+            duration: 500,
+            delay: 100,
+        });
 
-    // Esconder el nav al hacer scroll down y mostrarlo al hacer scroll up
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > lastScrollY) {
-            // Scrolling down
-            nav.classList.add('hidden');
-        } else {
-            // Scrolling up
-            nav.classList.remove('hidden');
-        }
-        lastScrollY = window.scrollY;
+        // Esconder el nav al hacer scroll down y mostrarlo al hacer scroll up
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (nav) {
+                if (window.scrollY > lastScrollY) {
+                    nav.classList.add('hidden');
+                } else {
+                    nav.classList.remove('hidden');
+                }
+            }
+            lastScrollY = window.scrollY;
+        });
+
     });
 
 </script>
