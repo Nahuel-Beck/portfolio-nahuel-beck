@@ -1,0 +1,46 @@
+---
+import '../../styles/global.css';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import Nav from '../../components/Nav.astro';
+
+export async function getStaticPaths() {
+    const services = await getCollection("services");
+    return services.map((s) => ({
+        params: { slug: s.slug },
+        props: { servicio: s },
+    }));
+}
+
+const { servicio } = Astro.props;
+const {  Content } = await servicio.render();
+---
+
+<Layout>
+    <Nav />
+    <head>
+        <title>{servicio ? servicio.data.title : "Servicio no encontrado"}</title>
+        <meta name="description" content={servicio?.data.description ?? "Este servicio no está disponible."} />
+    </head>
+    <section class="servicio-detalle">
+        { servicio ? (
+            <>
+                <h1>{servicio.data.title}</h1>
+                <p>{servicio.data.description}</p>
+                <article>
+                    <Content content={servicio.body} />
+                </article>
+            </>
+        ) : (
+            <h2>Servicio no encontrado, chinguenguenza.</h2>
+        )}
+    </section>
+</Layout>
+<Footer />
+
+<style>
+    .servicio-detalle {
+        height: 100vh;
+    }
+</style>
