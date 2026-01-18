@@ -88,38 +88,35 @@ import logo from "/public/img/logo.svg";
 
 <script>
     import { animate } from 'animejs';
-    document.addEventListener('astro:page-load', () => {
+    
+    const links = document.querySelectorAll('nav ul li');
+    animate(links, {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 500,
+        delay: (el, i) => i * 100,
+        easing: 'easeOutQuad',
+    });
 
-        const links = document.querySelectorAll('nav ul li');
-        animate(links, {
-            opacity: [0, 1],
-            translateY: [10, 0],
-            duration: 500,
-            delay: (el, i) => i * 100,
-            easing: 'easeOutQuad',
-        });
+    animate(document.querySelectorAll('nav button'), {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 500,
+        delay: 100,
+    });
 
-        animate(document.querySelectorAll('nav button'), {
-            opacity: [0, 1],
-            translateY: [10, 0],
-            duration: 500,
-            delay: 100,
-        });
-
-        // Esconder el nav al hacer scroll down y mostrarlo al hacer scroll up
-        let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (nav) {
-                if (window.scrollY > lastScrollY) {
-                    nav.classList.add('hidden');
-                } else {
-                    nav.classList.remove('hidden');
-                }
+    // Esconder el nav al hacer scroll down y mostrarlo al hacer scroll up
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (nav) {
+            if (window.scrollY > lastScrollY) {
+                nav.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
             }
-            lastScrollY = window.scrollY;
-        });
-
+        }
+        lastScrollY = window.scrollY;
     });
 
 </script>
