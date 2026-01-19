@@ -1,7 +1,7 @@
 ---
 title: "Motion graphics y edición de video"
 description: "Animación de elementos visuales y edición de material audiovisual para redes sociales"
-icon: "💻"
+icon: "Clapperboard"
 ---
 
 Lorem Ipsum es un texto de relleno estándar utilizado en la industria del diseño y la tipografía desde el siglo XVI, derivado de una obra de Cicerón.

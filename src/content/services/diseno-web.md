@@ -1,7 +1,7 @@
 ---
 title: "Diseño web"
 description: "Diseño sitios web con precisión de identidad gráfica, optimizados y escalables"
-icon: "💻"
+icon: "FileCode"
 ---
 
 ## ¿Qué incluye este servicio?
