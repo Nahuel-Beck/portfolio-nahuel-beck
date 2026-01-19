@@ -1,0 +1,72 @@
+---
+import * as LucideIcons from 'lucide-astro';
+
+const { title, description, icon, slug } = Astro.props;
+type IconName = keyof typeof LucideIcons;
+const IconComponent = LucideIcons[icon as IconName] || LucideIcons.HelpCircle;
+const bgImage = "/img/modules.png";
+---
+
+<a href={`/servicios/${slug}`} class="card"  style={`--bg: url(${bgImage});`}>
+    <IconComponent size={32} class="icon" />
+    <h4>{title}</h4>
+    <p>{description}</p>
+</a>
+
+<style>
+
+    .card {
+        text-align: start;
+        cursor: pointer;
+        padding: 3rem;
+        border-radius: 8px; 
+        background-repeat: no-repeat;
+        background-position: center 60%; 
+        background-color: transparent;
+        transition: 
+            background-position 0.5s ease-out, 
+            transform 0.4s ease-out, 
+            box-shadow 0.4s ease-out,
+            border 0.4s ease-out;
+
+        position: relative;
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    i {
+        font-size: 1.5rem;
+        color: inherit;
+    }
+
+    h4, p {
+        margin: 0;
+    }
+
+    h4 {
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 125%;
+    }
+
+    /* Lógica del Hover */
+    @media (hover: hover) {
+        .card:hover {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), var(--bg);
+            background-position: center center;
+            
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px);
+            color: #fff;
+        }
+    }
+</style>

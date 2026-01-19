@@ -1,7 +1,7 @@
 ---
 title: "Diseño Gráfico"
 description: "Diseño de piezas gráficas e impresos"
-icon: "💻"
+icon: "SplinePointer"
 ---
 
 Lorem Ipsum es un texto de relleno estándar utilizado en la industria del diseño y la tipografía desde el siglo XVI, derivado de una obra de Cicerón.
