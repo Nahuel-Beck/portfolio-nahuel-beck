@@ -11,11 +11,18 @@
   --color-text: #e5e8eb;
   --color-accent: #1c5670;
   --color-button-hover: #144554;
+
+  --color-gs: #ccc;
+  --color-bl: #f4f4f4;
+  --color-ng: #3F3F3F;
+  --color-vio-1: #750C70;
+  --color-vio-2: #DD54DD;
+  --color-turq-1: #70C1C1;
 }
 
 html {
   font-family: var(--font-base);
-  background-color: var(--color-bg);
+  background-color: var(--color-gs);
   color: var(--color-text);
   scroll-behavior: smooth;
 }
@@ -25,10 +32,11 @@ main {
   margin: 5.5rem 0rem 0rem;
 }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, p {
     font-family: var(--font-base);
     margin-top: 0;
     line-height: 1.6;
+    color: var(--color-ng);
 }
 
 button {
@@ -36,9 +44,13 @@ button {
   padding: .5rem 1rem;
   border: none;
   border-radius: 4px;
-  background-color: var(--color-accent);
   color: var(--color-text);
   cursor: pointer;
+}
+
+a {
+  color: var(--color-vio-2);
+  text-decoration: none;
 }
 
 .nav {

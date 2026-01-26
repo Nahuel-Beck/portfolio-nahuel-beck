@@ -1,1 +1,1 @@
-Creado con Astro.
+Portfolio de Nahuel Beck. Diseño gráfico, diseño web y motion graphics.

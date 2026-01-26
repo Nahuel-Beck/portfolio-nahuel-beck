@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@lucide/astro": "^0.562.0",
     "animejs": "^4.2.2",

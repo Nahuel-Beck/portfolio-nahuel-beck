@@ -1,0 +1,160 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+<Layout>
+    <Nav />
+    <div class="hero" style={`background: linear-gradient(25deg, #0000008c, #00000000), url('${project.data.image}') no-repeat, center center; background-size: cover;`}>
+        <div class="">
+            <span>{project.data.tag}</span>
+            <h1>{project.data.title}</h1>
+        </div>
+    </div>
+    <section>
+        <div class="bloque-texto-1">
+            <h2>Detalles</h2>
+            <p>{project.data.summary}</p>
+            <div class="tools">
+                <p>{project.data.tools}</p>
+            </div>
+        </div>
+        <article>
+            <Content />
+        </article>
+        <!-- <article>
+            <Content content={project.body} />
+        </article> -->
+    </section>
+    <Footer />
+</Layout>
+
+<style>
+    body {
+        margin-top: 0 !important;
+    }
+
+    .hero {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        
+        width: 100%;
+        height: 50vh;
+        
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero div {
+        position: absolute;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        bottom: 0;
+        left: 4rem;
+        padding: 1rem;
+        margin: 0 auto;
+        text-align: start;
+    }
+
+    .hero h1 {
+        max-width: 800px;
+        padding: 0rem;
+        bottom: 2rem;
+
+        font-weight: 200;
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        color: var(--color-text);
+        text-align: start;
+    }
+
+    section {
+        padding: 2rem;
+        max-width: 100%;
+        margin: 0 3rem;
+    }
+
+    p {
+        font-size: .85rem;
+        margin-bottom: 2rem;
+        color: var(--color-ng);
+    }
+
+    .bloque-texto-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 2rem 0rem 0rem;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        color: var(--color-bl);
+        background-color: var(--color-ng);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        width: fit-content;
+    }
+
+    .bloque-texto-1 > div {
+        grid-column: 2;
+    }
+
+    .tools {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
+
+
+    /* article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        font-size: .95rem;
+        line-height: 1.6;
+        color: var(--color-ng);
+    } */
+
+    article :global(.text-project) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 4rem;
+        font-size: .95rem;
+        line-height: 1.6;
+        color: var(--color-ng);
+    }
+
+    article :global(.gallery-project) {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        width: 100%;
+    }
+
+    article :global(.galeria-proyecto img),
+    article :global(.galeria-proyecto video) {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+</style>
