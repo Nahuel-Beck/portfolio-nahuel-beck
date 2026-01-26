@@ -65,20 +65,27 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
 
     .info h2 {
         line-height: 100%;
+        margin: .5rem 0;
+        color: var(--color-bl);
+    }
+
+    .info p {
+        margin: .5rem 0 0;
+        color: var(--color-bl);
     }
 
     .info .category {
         font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
-        color: #888;
+        color: var(--color-vio-1);
         margin: 0;
     }
     
     .info .badge {
         font-size: 0.75rem;
         font-weight: 500;
-        color: #555;
+        color: var(--color-bl);
         margin: 0.25rem 0;
     }
     
@@ -92,16 +99,17 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
     }
 
     .card {
+        border: 1px solid var(--color-bl);
         transition: all 0.3s ease;
     }
 
     
     div.card:hover {
         transform: translateY(-4px);
-        background-color: #ccc;
+        background-color: var(--color-bl);
     }
     div.card:hover h2,
     div.card:hover p {
-        color: #363636;
+        color: var(--color-ng);
     }
 </style>

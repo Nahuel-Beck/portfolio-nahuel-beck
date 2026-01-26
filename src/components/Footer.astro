@@ -28,11 +28,12 @@ import logo from "/public/img/logo.svg";
 <style>
     footer {
         display: flex;
+        height: 80vh;
         gap: auto;
         align-items: center;
         justify-content: space-around;
         padding: 2rem;
-        background-color: #ccc;
+        background-color: var(--color-ng);
         text-align: start;
     }
 
@@ -41,7 +42,7 @@ import logo from "/public/img/logo.svg";
     }
 
     p, a {
-        color: #333;
+        color: var(--color-bl);
     }
 
     div.redes ul {
@@ -63,8 +64,8 @@ import logo from "/public/img/logo.svg";
 
     @media (hover: hover) {
         footer a:hover {
-            border-bottom: 1px solid #333;
-            color: #333;
+            border-bottom: 1px solid var(--color-vio-2);
+            color: var(--color-vio-2);
             transform: translateY(-4px);
         }
     }
