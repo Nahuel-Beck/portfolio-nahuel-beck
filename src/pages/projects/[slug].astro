@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
+import Lightbox from '../../components/Lightbox.astro';
 
 
 export async function getStaticPaths() {
@@ -29,19 +30,25 @@ const { Content } = await project.render();
         <div class="bloque-texto-1">
             <h2>Detalles</h2>
             <p>{project.data.summary}</p>
+            <!-- <img src="/public/img/modules-inline.svg" alt="modulos"> -->
             <div class="tools">
-                <p>{project.data.tools}</p>
+                {project.data.tools && project.data.tools.map((tool) => (
+                    <p>{tool}</p>
+                ))};
             </div>
         </div>
         <article>
             <Content />
         </article>
-        <!-- <article>
-            <Content content={project.body} />
-        </article> -->
     </section>
+    <Lightbox />
     <Footer />
 </Layout>
+
+
+
+
+
 
 <style>
     body {
@@ -77,7 +84,7 @@ const { Content } = await project.render();
         padding: 0rem;
         bottom: 2rem;
 
-        font-weight: 200;
+        font-weight: 400;
         font-family: var(--font-heading);
         font-size: 2.5rem;
         line-height: 2.5rem;
@@ -91,6 +98,11 @@ const { Content } = await project.render();
         margin: 0 3rem;
     }
 
+    h2 {
+        font-weight: 300;
+        font-size: 2.45rem;
+    }
+
     p {
         font-size: .85rem;
         margin-bottom: 2rem;
@@ -99,13 +111,15 @@ const { Content } = await project.render();
 
     .bloque-texto-1 {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin: 2rem 0rem 0rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 4rem 0rem 4rem;
+        border-bottom: 1px solid #b1b1b1;
     }
 
     span {
         text-transform: uppercase;
         font-size: 0.85rem;
+        letter-spacing: 2px;
         color: var(--color-bl);
         background-color: var(--color-ng);
         padding: 0.25rem 0.5rem;
@@ -117,21 +131,37 @@ const { Content } = await project.render();
         grid-column: 2;
     }
 
+    .bloque-texto-1 > p {
+        grid-column: 2 / -1;
+    }
+
+    .bloque-texto-1 > p:first-of-type {
+        font-size: 1.25rem;
+    }
+
+    /* .bloque-texto-1 img {
+        width: 30%;
+        object-fit: cover;
+        padding: 0rem 3rem 0rem 0rem;
+    } */
+
     .tools {
         display: flex;
-        gap: 1rem;
+        gap: .5rem;
         align-items: center;
         margin-bottom: 4rem;
     }
 
+    .tools p {
+        padding: .25rem .5rem;
+        border-radius: 4px;
+        background-color: var(--color-ng);
+        color: var(--color-bl);
+    }
 
-    /* article {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        font-size: .95rem;
-        line-height: 1.6;
-        color: var(--color-ng);
-    } */
+    article {
+        padding-top: 2rem;
+    }
 
     article :global(.text-project) {
         display: grid;
@@ -144,17 +174,37 @@ const { Content } = await project.render();
     }
 
     article :global(.gallery-project) {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        width: 100%;
+        columns: 3;
+        gap: 1rem;
     }
 
-    article :global(.galeria-proyecto img),
-    article :global(.galeria-proyecto video) {
+    article :global(.gallery-project img),
+    article :global(.gallery-project video) {
         width: 100%;
         height: auto;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all .3s ease;
     }
+
+    article :global(.gallery-project div) {
+        overflow: hidden;
+        margin-bottom: 1rem;
+        break-inside: avoid;
+        transition: all .3s ease;
+    }
+
+    article :global(.gallery-project div p) {
+        margin: 0;
+    }
+
+    @media (hover: hover) {
+        article :global(.gallery-project img):hover,
+        article :global(.gallery-project video):hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }        
+        article :global(.gallery-project div):hover {
+            border-radius: 12px;
+        }
+    }
+
 </style>

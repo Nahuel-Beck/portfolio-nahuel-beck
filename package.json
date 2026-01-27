@@ -14,6 +14,7 @@
     "@lucide/astro": "^0.562.0",
     "animejs": "^4.2.2",
     "astro": "^5.14.4",
+    "glightbox": "^3.3.1",
     "lucide-astro": "^0.556.0"
   }
 }

@@ -1,0 +1,57 @@
+---
+import 'glightbox/dist/css/glightbox.min.css';
+---
+<script>
+    import GLightbox from 'glightbox';
+
+    function initLightbox() {
+        const article = document.querySelector('article');
+        if(!article) return;
+
+        const images = article.querySelectorAll('img');
+
+        images.forEach((img) => {
+            if (img.parentElement?.tagName !== 'A') {
+                const link = document.createElement('a');
+                
+                link.href = (img as HTMLImageElement).src;
+                link.classList.add('glightbox');
+                
+                img.parentNode?.insertBefore(link, img);
+                link.appendChild(img);
+            }
+        });
+
+
+        const lightbox = GLightbox ({
+            selector: ".glightbox",
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: true,
+            zoomable: true,
+            draggable: true,
+            openEffect: 'zoom',
+            closeEffect: 'zoom',
+            svg: {
+                close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>',
+                next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
+                prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+            },
+        });
+    }
+
+    document.addEventListener('astro:page-load', () => {
+        initLightbox();
+    });
+    initLightbox();
+</script>
+
+<style>
+    .glightbox img {
+        cursor: zoom-in;
+        transition: opacity 0.3s ease;
+    }
+    .glightbox:hover img {
+        opacity: 0.9;
+    }
+</style>
