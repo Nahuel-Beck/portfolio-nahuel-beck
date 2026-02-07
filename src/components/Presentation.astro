@@ -8,12 +8,23 @@ import '../styles/global.css';
         <title>Presentación</title>
     </head>
     <section class="presentation">
-        <h1>Nahuel Beck</h1>
-        <p>Diseño para el universo impreso y digital.</p>
+        <div class="video-container">
+            <video autoplay muted loop id="video-hero">
+                <source src="/video/Marcas-Animadas-2024.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="presentation-content">
+            <h1>Nahuel Beck</h1>
+            <p>Diseño para el universo impreso y digital.</p>
+        </div>
     </section>
 </html>
 
 <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
     section {
         text-align: center;
     }
@@ -27,27 +38,34 @@ import '../styles/global.css';
     }
     
     .presentation {
-        padding: 3rem;
-        margin: 0rem 3rem;
-        height: 80vh;
+        position: relative;
+        height: 100vh;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    #video-hero {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    .presentation-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
     }
 </style>
-
-<script>
-// import { animate, splitText, stagger } from 'animejs';
-
-// splitText('p', {
-//     lines: { wrap: 'clip' },
-//     })
-//     .addEffect(({ lines }) => animate(lines, {
-//     y: [
-//         { to: ['100%', '0%'] },
-//         { to: '-100%', delay: 750, ease: 'in(3)' }
-//     ],
-//     duration: 750,
-//     ease: 'out(3)',
-//     delay: stagger(200),
-//     loop: true,
-//     loopDelay: 500,
-// }));
-</script>
