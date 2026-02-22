@@ -1,13 +1,16 @@
 ---
 import '../styles/global.css';
+import * as LucideIcons from 'lucide-astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Layout title="Página No Encontrada">
     <section class="not-found">
-        <h1>404 - Página No Encontrada</h1>
-        <p>Lo sentimos, la página que buscas no existe.</p>
-        <button onclick="location.href='/'">Volver al Inicio</button>
+        <h1>404 | No encontramos lo que buscas</h1>
+        <p>Perdón, pero el contenido que estas buscando no existe.</p>
+        <button onclick="location.href='/'">
+            <LucideIcons.ArrowLeft class="icon" />
+            Volver al Inicio</button>
     </section>
     <Footer />
 </Layout>
@@ -41,6 +44,10 @@ import Footer from '../components/Footer.astro';
         background-color: var(--color-accent);
         color: var(--color-text);
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease;
     }
 
     .not-found button:hover {

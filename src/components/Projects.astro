@@ -2,7 +2,8 @@
 import CardProject from './CardProject.astro';
 ---
 <section class="cards">
-    <h3>Proyectos en los que estoy involucrado</h3>
+    <h3>Explora los proyectos de <span>hoy</span></h3>
+    <p>Estos son algunos de los ideas en las que estoy trabajando actualmente</p>
     <CardProject />
 </section>
 
@@ -10,10 +11,29 @@ import CardProject from './CardProject.astro';
     section.cards {
         padding: 3rem 0rem;
     }
+
     section.cards h3 {
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+
+    section.cards p {
+        font-size: 1.25rem;
         font-weight: 200;
-        font-size: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    section.cards h3,
+    section.cards p {
         margin-bottom: 2rem;
         text-align: center;
+    }
+
+    section.cards span {
+        font-style: italic;
+        font-weight: 600;
+        letter-spacing: -1.2px;
+        padding-bottom: .15rem;
+        border-bottom: 3.5px solid var(--color-ng);
     }
 </style>
