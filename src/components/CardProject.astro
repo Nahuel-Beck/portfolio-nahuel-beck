@@ -12,13 +12,16 @@ const images = import.meta.glob<ImageModule>('../src/assets/img/*.{jpeg,jpg,png,
     eager: true 
 });
 
-const projects = rows.slice(1).map(([imgName, title, description, link, badge, category]) => {
+const projects = rows.slice(1)
+                    .slice(-5)
+                    .reverse()
+                    .map(([imgName, title, description, link, badge, category, date]) => {
     const imgPath = `/src/assets/img/${imgName.trim()}`;
     const imgAssets = images[imgPath];
 
     return {
         img: imgAssets ? imgAssets.default : imgName,
-        title, description, link, badge, category
+        title, description, link, badge, category, date
     };
 });
 ---
@@ -28,6 +31,7 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
         <div class="card">
             <a href={project.link} target="_blank">
                 <img src={project.img} alt={project.title} />
+                <p class="date">{project.date}</p>
                 <div class="info">
                     <p class="category">{project.category}</p>
                     <h2>{project.title}</h2>
@@ -53,6 +57,8 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
     }
     
     img {
+        height: 200px;
+        object-fit: cover;
         width: 100%;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
@@ -72,13 +78,14 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
     .info p {
         margin: .5rem 0 0;
         color: var(--color-bl);
+        line-height: 1.2rem;
     }
 
     .info .category {
         font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
-        color: var(--color-vio-1);
+        color: var(--color-vio-2);
         margin: 0;
     }
     
@@ -94,13 +101,33 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         width: auto;
         gap: 3rem 1rem;
-        justify-content: center;
         margin: 2rem 4rem;
+        padding: 1rem 0rem;
+        justify-items: center;
+        align-items: start;
+        background-color: var(--color-bg-transp);
     }
 
     .card {
-        border: 1px solid var(--color-bl);
+        background-color: var(--color-ng);
+        /* border: 1px solid var(--color-bl); */
         transition: all 0.3s ease;
+    }
+
+    .card a {
+        position: relative;
+    }
+
+    .date {
+        position: absolute;
+        font-size: 0.75rem;
+        font-weight: 500;
+        top: -10.85rem;
+        right: 11px;
+        background: linear-gradient(90deg, var(--color-vio-2), #dd54dd83);
+        padding: .25rem .5rem;
+        border-radius: 5px;
+        color: var(--color-bl);
     }
 
     
@@ -110,6 +137,10 @@ const projects = rows.slice(1).map(([imgName, title, description, link, badge, c
     }
     div.card:hover h2,
     div.card:hover p {
+        color: var(--color-ng);
+    }
+    div.card:hover .date {
+        background: var(--color-bl);
         color: var(--color-ng);
     }
 </style>

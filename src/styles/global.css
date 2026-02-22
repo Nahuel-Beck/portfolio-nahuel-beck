@@ -7,6 +7,7 @@
   --font-base: 'Inter', sans-serif;
   --font-heading: "Special Gothic Expanded One", sans-serif;
   --color-bg: #313235;
+  --color-bg-transp: rgba(49, 50, 53, 0.05);
   --color-bg-nav: #919191;
   --color-text: #e5e8eb;
   --color-accent: #1c5670;
@@ -27,10 +28,10 @@ html {
   scroll-behavior: smooth;
 }
 
-body,
+/* body,
 main {
-  /* margin: 5.5rem 0rem 0rem; */
-}
+  margin: 5.5rem 0rem 0rem;
+} */
 
   h1, h2, h3, h4, h5, h6, p {
     font-family: var(--font-base);
