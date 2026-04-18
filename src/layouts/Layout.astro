@@ -1,11 +1,17 @@
-<!doctype html>
+---
+import SEO from '../components/SEO.astro';
+
+const { title, description, image, type } = Astro.props;
+---
+
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
+		<SEO title={title} description={description} image={image} type={type} />
+		<!-- <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Nahuel Beck</title>
+		<title>Nahuel Beck</title> -->
 	</head>
 	<body>
 		<slot />
